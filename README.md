@@ -1,4 +1,8 @@
 # ipdb-java
+Forked from [ipipdotnet/ipdb-java](https://github.com/ipipdotnet/ipdb-java)，升级了 fastjson 到 fastjson2，同时对升级完毕的内容做了适配。对 Java 9+ 后部分非公开 API 的调用做了自定义静态方法的适配。
+
+以下是原文：
+
 IPIP.net officially supported IP database ipdb format parsing library
 
 # Notice
