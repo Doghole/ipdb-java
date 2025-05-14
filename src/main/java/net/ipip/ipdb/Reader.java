@@ -1,9 +1,11 @@
 package net.ipip.ipdb;
 
-import com.alibaba.fastjson.JSONObject;
-import sun.net.util.IPAddressUtil;
-
+import com.alibaba.fastjson2.JSONObject;
 import java.io.*;
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 
 
@@ -96,7 +98,7 @@ public class Reader {
         byte[] ipv;
 
         if (addr.indexOf(":") >= 0) {
-            ipv = IPAddressUtil.textToNumericFormatV6(addr);
+            ipv = textToNumericFormatV6(addr);
             if (ipv == null) {
                 throw new IPFormatException("ipv6 format error");
             }
@@ -105,7 +107,7 @@ public class Reader {
             }
 
         } else if (addr.indexOf(".") > 0) {
-            ipv = IPAddressUtil.textToNumericFormatV4(addr);
+            ipv = textToNumericFormatV4(addr);
             if (ipv == null) {
                 throw new IPFormatException("ipv4 format error");
             }
@@ -219,5 +221,34 @@ public class Reader {
 
     public String getSupportLanguages() {
         return this.meta.Languages.keySet().toString();
+    }
+    
+    public static byte[] textToNumericFormatV4(String ip) {
+        try {
+            InetAddress inet = InetAddress.getByName(ip);
+            if (inet instanceof Inet4Address) {
+                return inet.getAddress(); // byte[4]
+            }
+        } catch (UnknownHostException ignored) {}
+        return null;
+    }
+
+    public static byte[] textToNumericFormatV6(String ip) {
+        try {
+            InetAddress inet = InetAddress.getByName(ip);
+            if (inet instanceof Inet6Address) {
+                return inet.getAddress(); // byte[16]
+            }
+        } catch (UnknownHostException ignored) {}
+        return null;
+    }
+
+    	
+    public static boolean isValidIPv4(String ip) {
+        return textToNumericFormatV4(ip) != null;
+    }
+
+    public static boolean isValidIPv6(String ip) {
+        return textToNumericFormatV6(ip) != null;
     }
 }

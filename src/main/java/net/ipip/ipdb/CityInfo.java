@@ -1,6 +1,6 @@
 package net.ipip.ipdb;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson2.JSONObject;
 
 import java.util.Map;
 

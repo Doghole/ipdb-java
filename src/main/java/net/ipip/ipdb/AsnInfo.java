@@ -1,6 +1,6 @@
 package net.ipip.ipdb;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.alibaba.fastjson2.annotation.JSONField;
 
 public class AsnInfo {
 
