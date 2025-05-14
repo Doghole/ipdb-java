@@ -3,9 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>ipdb-sdk</name>
-    <description>IPIP.net Support ipdb database file parser SDK</description>
-    <url>https://github.com/ipipdotnet/ipdb-java</url>
+    <name>ipdb-sdk-doghole</name>
+    <description>IPIP.net Support ipdb database file parser SDK, updated with fastjson2</description>
+    <url>https://github.com/Doghole/ipdb-java</url>
     <groupId>net.ipip</groupId>
     <artifactId>ipdb</artifactId>
     <version>1.5.0</version>
@@ -16,12 +16,16 @@
             <name>ipip.net</name>
             <email>frk@ipip.net</email>
         </developer>
+        <developer>
+            <id>doghole</id>
+            <name>doghole</name>
+        </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/ipipdotnet/ipdb-java.git</connection>
-        <developerConnection>scm:git:https://github.com/ipipdotnet/ipdb-java.git</developerConnection>
-        <url>https://github.com/ipipdotnet/ipdb-java</url>
+        <connection>scm:git:https://github.com/Doghole/ipdb-java.git</connection>
+        <developerConnection>scm:git:https://github.com/Doghole/ipdb-java.git</developerConnection>
+        <url>https://github.com/Doghole/ipdb-java</url>
     </scm>
 
     <build>
@@ -146,7 +150,7 @@
         </plugins>
     </build>
 
-    <distributionManagement>
+<!--    <distributionManagement>
         <repository>
             <id>releases</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
@@ -157,7 +161,7 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
 
-    </distributionManagement>
+    </distributionManagement>-->
 
          <!--添加依赖的jar包-->
          <dependencies>
@@ -182,4 +186,18 @@
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
     </licenses>
+    
+    <profiles>
+        <profile>
+            <id>local-dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <dependencies>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>
